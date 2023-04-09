@@ -8,6 +8,9 @@ class ProductPresent(models.Model):
     price = models.IntegerField(default=0)
     quantity_left = models.IntegerField(default=0)
 
-
+class ProductImage(models.Model):
+    pic_name = models.CharField(max_length=200)
+    image = models.ImageField(upload_to = '') # Should I put somthing here??
+    product = models.ForeignKey(ProductPresent, on_delete=models.CASCADE)
 
 
