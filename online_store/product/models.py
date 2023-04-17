@@ -10,7 +10,7 @@ class ProductPresent(models.Model):
 
 class ProductImage(models.Model):
     pic_name = models.CharField(max_length=200)
-    image = models.ImageField(upload_to = '') # Should I put somthing here??
+    image = models.ImageField(upload_to ='uploads/% Y/% m/% d/') # Should I put somthing here??
     product = models.ForeignKey(ProductPresent, on_delete=models.CASCADE)
 
 

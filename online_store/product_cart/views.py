@@ -4,7 +4,7 @@ from rest_framework import generics
 from product_cart.permissions import IsOwner
 # Create your views here.
 from product_cart.serializers import CartSerializer
-from product_cart.models import Cart, ProductInCart
+from product_cart.models import Cart, CartItem
 
 #View for returning the user cart (Correct???????)
 class UserCartView(generics.RetrieveUpdateDestroyAPIView):
@@ -15,15 +15,17 @@ class UserCartView(generics.RetrieveUpdateDestroyAPIView):
         pk = self.kwargs.get('pk')
         return Userprofile.objects.get(pk=pk).cart
 
-class CartView(generics.ListCreateAPIView):
+class CartView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cart.objects.all()
-    serializer_class = ProductInCart
-    def get_queryset(self):
-        cart_id = self.kwargs.get('cart_id')
-        return Cart.objects.get(pk=cart_id).productincart_set
+    serializer_class = CartSerializer
 
-# Correct if ingnoring cart_id?
+# Correct use of the cartitemlist??
 class InCartProductView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = ProductInCart.objects.all()
-    serializer_class = ProductInCart
+    queryset = Cart.objects.all()
+    serializer_class = CartItem
+    def get_object(self):
+        cart_id = self.kwargs.get('cart_id')
+        pk = self.kwargs.get('pk')
+        cartitem_list = Cart.objects.get(pk=cart_id).cartitem_set
+        return cartitem_list.get(pk=pk)#Specifically is this correct
     
