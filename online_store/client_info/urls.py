@@ -2,6 +2,7 @@ from django.urls import path
 
 from . import views
 
+
 #Testing urls
 app_name = 'client_info'
 urlpatterns = [

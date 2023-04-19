@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 #User profile to which the user must login
 class Userprofile(models.Model):
