@@ -8,7 +8,7 @@ from product_cart.models import Cart, CartItem
 from django.shortcuts import get_object_or_404
 
 
-#View for returning the user cart (Correct???????)
+#View for returning the user cart 
 class UserCartView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Userprofile.objects.all()
     serializer_class = CartSerializer
@@ -28,7 +28,7 @@ class CartView(generics.RetrieveUpdateDestroyAPIView):
         return get_object_or_404(Cart, pk=pk)
 
 
-# Correct use of the cartitemlist??
+
 class InCartProductView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cart.objects.all()
     serializer_class = CartItem
