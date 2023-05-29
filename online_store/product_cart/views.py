@@ -22,14 +22,9 @@ class UserCartView(generics.RetrieveUpdateDestroyAPIView):
 class CartView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
-    
-    def get_object(self):
-        pk = self.kwargs.get('pk')
-        return get_object_or_404(Cart, pk=pk)
 
 
-
-class InCartProductView(generics.RetrieveUpdateDestroyAPIView):
+class InCartProductView(generics.RetrieveUpdateDestroyAPIView):# Not working, not sure why
     queryset = Cart.objects.all()
     serializer_class = CartItem
 
